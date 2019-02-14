@@ -9,6 +9,8 @@ The goal of each language's project is to take a text file as input, parse its w
 create a series of objects meant to emulate the text's "code" through a BNF translation, before finally performing
 the translated code via execution of the created objects.
 
+expr1.txt through expr4.txt are all test files used the projects given. They should function according to program specifications.
+
 BNF Used:
 
 \<program> -> function \<id> ( ) \<block> end

@@ -1,8 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TextBNFConverter
 {
@@ -60,10 +58,10 @@ namespace TextBNFConverter
         private Block getBlock()
         {
             //Precondition: [Block] -> [Statement] | [Statement] [Block]
-            //Postcondition: Creates a block using remaining tokens. Can contain an arbitrary number of statements. A Block MUST contain at least one (1) statement
+            //Postcondition: Creates a block using remaining tokens. Can contain an arbitrary number of statements
             var statements = new List<Statement>();
 
-            //If our current token shows signs of being a statement, loop. Otherwise we must be concluding
+            //If our current token shows signs of being a statement, loop. Otherwise we must be concluding. A Block MUST contain at least one (1) statement
             do
             {
                 statements.Add(getStatement());
@@ -75,9 +73,7 @@ namespace TextBNFConverter
         {
             //Precondition: [Statement] -> [If Statement] | [Assign Statement] | [Print Statement] | [While Statement] | [For Statement]
             //Postcondition: Creates a new statement using other methods. Chooses constructing method based on current token's type
-            Token token = lex.getToken();
-
-            switch (token.Token_Type)
+            switch (lex.getToken().Token_Type)
             {
                 case TokenType.IF_TOK:
                     return getIf();
@@ -90,7 +86,7 @@ namespace TextBNFConverter
                 case TokenType.FOR_TOK:
                     return getFor();
                 default:
-                    throw new Exception($"getStatement - Current token ({token.Token_Type}) matches no existing Statements");
+                    throw new Exception($"getStatement - Current token ({lex.getToken().Token_Type}) matches no existing Statements");
             }
         }
         private IfStatement getIf()
@@ -208,9 +204,7 @@ namespace TextBNFConverter
         {
             //Precondition: [BoolOperator] -> < | > | <= | >= | == | !=
             //Postcondition: Gets our current token's boolean operator
-            var token = lex.getNextToken();
-
-            switch (token.Token_Type)
+            switch (lex.getNextToken().Token_Type)
             {
                 case TokenType.EQL_TOK:
                     return BoolOperator.EQL_OP;
@@ -225,16 +219,14 @@ namespace TextBNFConverter
                 case TokenType.LSEQ_TOK:
                     return BoolOperator.LSQU_OP;
                 default:
-                    throw new Exception($"getBoolOperator - Current token ({token.Token_Type}) is not a valid Boolean Operator");
+                    throw new Exception($"getBoolOperator - Current token ({lex.getNextToken().Token_Type}) is not a valid Boolean Operator");
             }
         }
         private ArithExpression getArithExpression()
         {
             //Precondition: [ArithExpression] -> [Id] | [Constant] | [BinaryExpression]
             //Postcondition: Creates an arithmetic expression using remaining tokens
-            Token token = lex.getToken();
-
-            switch (token.Token_Type)
+            switch (lex.getToken().Token_Type)
             {
                 case TokenType.ID_TOK:
                     return getId();
@@ -249,7 +241,7 @@ namespace TextBNFConverter
                 case TokenType.PWR_TOK:
                     return getBinExpression();
                 default:
-                    throw new Exception($"getArithExpression - Current token ({token.Token_Type}) matches no existing ArithExpressions");
+                    throw new Exception($"getArithExpression - Current token ({lex.getToken().Token_Type}) matches no existing ArithExpressions");
             }
         }
         private BinaryExpression getBinExpression()

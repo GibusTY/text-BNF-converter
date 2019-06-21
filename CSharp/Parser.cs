@@ -62,13 +62,12 @@ namespace TextBNFConverter
             //Precondition: [Block] -> [Statement] | [Statement] [Block]
             //Postcondition: Creates a block using remaining tokens. Can contain an arbitrary number of statements
             var statements = new List<Statement>();
-            var token = lex.getToken();
 
             //If our current token shows signs of being a statement, loop. Otherwise we must be concluding
-            while (new[] {TokenType.IF_TOK, TokenType.ID_TOK, TokenType.PRINT_TOK, TokenType.WHILE_TOK, TokenType.FOR_TOK}.Contains(token.Token_Type)){
+            do
+            {
                 statements.Add(getStatement());
-                token = lex.getToken();
-            }
+            } while (new[] { TokenType.IF_TOK, TokenType.ID_TOK, TokenType.PRINT_TOK, TokenType.WHILE_TOK, TokenType.FOR_TOK }.Contains(lex.getToken().Token_Type));
 
             return new Block(statements);
         }

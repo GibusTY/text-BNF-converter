@@ -1,5 +1,8 @@
 Text_BNF_Converter
 
+BNF, or Backus-Naur Form, Grammar is a form of context free grammar meant to better simplify language syntaxes for human consumption, 
+such as formats, documents, instructions and communication protocols. In this program it primarily demonstrates document flow, how text inputs are interpreted via the creation of objects within the program itself. 
+
 The files included here were created as part of a project within my CS 4308 course (Concepts of Programming Language)
 Each subfolder represents the same project done in different languages.
 
@@ -9,7 +12,7 @@ The goal of each language's project is to take a text file as input, parse its w
 create a series of objects meant to emulate the text's "code" through a BNF translation, before finally performing
 the translated code via execution of the created objects.
 
-expr1.txt through expr4.txt are all test files used the projects given. They should function according to program specifications if either are used as input within any language's respective 'Interpreter' file.
+expr1.txt through expr4.txt are all test files used the projects given. They should function according to program specifications if any are used as input within any language's respective 'Interpreter' file.
 
 BNF Used:
 

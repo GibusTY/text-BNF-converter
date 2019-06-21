@@ -60,7 +60,7 @@ namespace TextBNFConverter
         private Block getBlock()
         {
             //Precondition: [Block] -> [Statement] | [Statement] [Block]
-            //Postcondition: Creates a block using remaining tokens. Can contain an arbitrary number of statements
+            //Postcondition: Creates a block using remaining tokens. Can contain an arbitrary number of statements. A Block MUST contain at least one (1) statement
             var statements = new List<Statement>();
 
             //If our current token shows signs of being a statement, loop. Otherwise we must be concluding
